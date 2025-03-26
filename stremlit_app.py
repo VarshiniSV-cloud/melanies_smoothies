@@ -11,8 +11,13 @@ st.write("Customize your smoothie here:")
 name_on_order=st.text_input("Name on Smoothie")
 st.write("The name on Smoothie will be:", name_on_order)
 
-cnx=st.connection("Snowflake")
-session = cnx.session()
+try:
+    cnx = st.connection("Snowflake")
+    session = cnx.session()
+except KeyError as e:
+    st.error(f"Missing connection details for Snowflake: {e}")
+#cnx=st.connection("Snowflake")
+
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
