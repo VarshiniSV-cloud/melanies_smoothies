@@ -12,3 +12,4 @@ name_on_order=st.text_input("Name on Smoothie")
 st.write("The name on Smoothie will be:", name_on_order)
 
 conn = st.connection("snowflake")
+session = cnx.session()
